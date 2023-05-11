@@ -11,9 +11,21 @@ function setup() {
     // Create the video
     video = createCapture(VIDEO);
     video.hide();
+    classifyVideo();
+}
+
+function classifyVideo() {
+    classifier.classify(video, results);
 }
 
 function draw() {
-    // Draw the video
     image(video, 0, 0);
+}
+
+function results(error, result) {
+    if (error) {
+        console.error(error);
+        return;
+    }
+    console.log(result);
 }
