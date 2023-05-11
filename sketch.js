@@ -1,5 +1,7 @@
 // Video
 let video;
+let classifier;
+let load = "Which car is it...";
 
 // Load the model
 function preload() {
@@ -19,7 +21,12 @@ function classifyVideo() {
 }
 
 function draw() {
+    background('rgba(144, 238, 144, 1)');
     image(video, 0, 0);
+    fill(255);
+    textSize(35);
+    textAlign(CENTER, CENTER);
+    text(load, width / 2, height - 20);
 }
 
 function results(error, result) {
@@ -27,5 +34,6 @@ function results(error, result) {
         console.error(error);
         return;
     }
-    console.log(result);
+    load = result[0].label;
+    classifyVideo();
 }
