@@ -12,11 +12,11 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight); // Pas de grootte van het canvas aan aan het browservenster
-  // Create the video
+  createCanvas(windowWidth, windowHeight);
   video = createCapture(VIDEO);
   video.hide();
   classifyVideo();
+  textFont('Lobster');
 }
 
 function classifyVideo() {
@@ -24,29 +24,34 @@ function classifyVideo() {
 }
 
 function draw() {
-    background('rgba(144, 238, 144, 1)');
-    let videoWidth = video.width / 2;
-    let videoHeight = video.height / 2;
-    image(video, width / 2 - videoWidth / 2, height / 2 - videoHeight / 2, videoWidth, videoHeight);
-  
-    fill(255);
-    let textSizeValue = 20;
-    textSize(textSizeValue);
-    textAlign(CENTER, TOP);
-  
-    // Weergave van de titel
-    textSize(40); // Pas de tekstgrootte van de titel aan
-    text(title, width / 2, height / 4 - textSizeValue); // Verplaats de titel iets naar boven
-  
-    // Weergave van de tekst
-    textSize(textSizeValue); // Pas de tekstgrootte van de tekst aan
-    text(caption, width / 2, height / 4 + textSizeValue); // Verplaats de tekst iets naar boven
-  
-    // Weergave van de laadtekst
-    textSize(textSizeValue * 1.5); // Pas de tekstgrootte van de laadtekst aan
-    text(load, width / 2, height / 2 + videoHeight / 2 + textSizeValue);
-  }
-    
+  background('rgba(204, 229, 255, 1)');
+  let videoWidth = video.width / 2;
+  let videoHeight = video.height / 2;
+  image(video, width / 2 - videoWidth / 2, height / 2 - videoHeight / 2, videoWidth, videoHeight);
+
+  fill(0);
+  let textSizeValue = 20;
+  textSize(textSizeValue);
+  textAlign(CENTER, TOP);
+
+  // Weergave van de titel
+  textSize(50);
+  textFont('Lobster'); // Pas het lettertype toe op de titel
+  text(title, width / 2, height / 6 - textSizeValue); // Pas de y-positie aan
+
+  // Weergave van de tekst
+  textSize(textSizeValue);
+  textFont('Arial'); // Gebruik een ander lettertype voor de tekst
+  let captionY = height / 6 + textSizeValue + 20; // Aangepaste y-positie voor het bijschrift
+  text(caption, width / 2, captionY);
+
+  // Weergave van de laadtekst
+  textSize(textSizeValue * 1.5);
+  textFont('Arial'); // Gebruik een ander lettertype voor de laadtekst
+  let loadY = height / 2 + videoHeight / 2 + textSizeValue * 2; // Aangepaste y-positie voor de laadtekst
+  text(load, width / 2, loadY);
+}
+
 
 function results(error, result) {
   if (error) {
@@ -58,5 +63,5 @@ function results(error, result) {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight); // Pas de grootte van het canvas aan aan het browservenster
+  resizeCanvas(windowWidth, windowHeight);
 }
