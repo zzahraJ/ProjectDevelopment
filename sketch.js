@@ -22,16 +22,16 @@ let load = "Which car is it...";
 function preload() {
   classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/jVcS5ZSNQ/");
   
-  bmwLogo = loadImage("img/bmwLogo.jpg"); // Laad het BMW-logo
-  mercedesLogo = loadImage("img/mercedesLogo.jpg"); // Laad het Mercedes-logo
-  audiLogo = loadImage("img/audiLogo.jpg");  //laad het audi logo
-  ferrariLogo = loadImage("img/ferrariLogo.png"); //laad het ferrari logo
-  fiatLogo = loadImage("img/fiatLogo.jpg"); //laad het fiat logo
-  jeepLogo = loadImage("img/jeepLogo.jpg"); //laad het jeep logo
-  teslaLogo = loadImage("img/teslaLogo.png"); //laad het tesla logo
-  volkswagenLogo = loadImage("img/volkswagenLogo.png"); //laad het volkswagen logo
-  porcheLogo = loadImage("img/porcheLogo.jpg"); //laad het porche logo
-  toyotaLogo = loadImage("img/toyotaLogo.jpg"); //laad het toyota logo
+  bmwLogo = loadImage("img/bmw.png"); // Laad het BMW-logo
+  mercedesLogo = loadImage("img/mercedes.png"); // Laad het Mercedes-logo
+  audiLogo = loadImage("img/audi.png");  //laad het audi logo
+  ferrariLogo = loadImage("img/ferrari.png"); //laad het ferrari logo
+  fiatLogo = loadImage("img/fiat.png"); //laad het fiat logo
+  jeepLogo = loadImage("img/jeep.png"); //laad het jeep logo
+  teslaLogo = loadImage("img/tesla.png"); //laad het tesla logo
+  volkswagenLogo = loadImage("img/volkswagen.png"); //laad het volkswagen logo
+  porcheLogo = loadImage("img/porche.png"); //laad het porche logo
+  toyotaLogo = loadImage("img/toyota.png"); //laad het toyota logo
 }
 
 function setup() {
