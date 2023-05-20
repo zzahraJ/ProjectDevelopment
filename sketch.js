@@ -5,23 +5,15 @@ let title = "The car guesser";
 let caption = "Scan the car here and find out which brand it is.";
 let carlogoImages = {}; // Object om afbeeldingen aan labels te koppelen
 
-let bmwLogo; // Variabele voor het BMW-logo
-let mercedesLogo; // Variabele voor het Mercedes-logo
-let audiLogo;//variabele voor the audi logo
-let ferrariLogo;//variabele voor the ferrari logo
-let fiatLogo;//variabele voor the fiat logo
-let jeepLogo;//variabele voor the jeep logo
-let teslaLogo;//variabele voor the tesla logo
-let volkswagenLogo;//variabele voor the volkswagen logo
-let porcheLogo;//variabele voor the porche logo
-let toyotaLogo;//variabele voor the toyota logo
+let carLogos = {}; // Object om labels aan logo's te koppelen
 
 let load = "Which car is it...";
 
-// Load the model
+// Load the model and images
 function preload() {
   classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/jVcS5ZSNQ/");
   
+
   bmwLogo = loadImage("img/bmwLogo.png"); // Laad het BMW-logo
   mercedesLogo = loadImage("img/mercedesLogo.png"); // Laad het Mercedes-logo
   audiLogo = loadImage("img/audiLogo.png");  //laad het audi logo
@@ -32,6 +24,19 @@ function preload() {
   volkswagenLogo = loadImage("img/volkswagenLogo.png"); //laad het volkswagen logo
   porcheLogo = loadImage("img/porcheLogo.png"); //laad het porche logo
   toyotaLogo = loadImage("img/toyotaLogo.png"); //laad het toyota logo
+
+  carLogos = {
+    BMW: loadImage("img/bmwLogo.jpg"), // Laad het BMW-logo
+    Mercedes: loadImage("img/mercedesLogo.jpg"), // Laad het Mercedes-logo
+    Audi: loadImage("img/audiLogo.jpg"),  //laad het audi logo
+    Ferrari: loadImage("img/ferrariLogo.png"), //laad het ferrari logo
+    Fiat: loadImage("img/fiatLogo.jpg"), //laad het fiat logo
+    Jeep: loadImage("img/jeepLogo.jpg"), //laad het jeep logo
+    Tesla: loadImage("img/teslaLogo.png"), //laad het tesla logo
+    Volkswagen: loadImage("img/volkswagenLogo.png"), //laad het volkswagen logo
+    Porche: loadImage("img/porcheLogo.jpg"), //laad het porche logo
+    Toyota: loadImage("img/toyotaLogo.jpg") //laad het toyota logo
+  };
 }
 
 function setup() {
@@ -76,79 +81,14 @@ function draw() {
   let loadY = videoY + videoHeight + textSizeValue * 2;
   text(load, width / 2, loadY);
 
-  // Check if the label is "BMW" and display the logo
-  if (load === "BMW") {
+  // Check if the label exists in the carLogos object and display the corresponding logo
+  if (carLogos[load]) {
     let logoSize = 100;
     let logoX = videoX + videoWidth / 2 - logoSize / 2;
     let logoY = loadY + textSizeValue * 2;
-    image(bmwLogo, logoX, logoY, logoSize, logoSize);
-  }
-
-  // Check if the label is "Mercedes" and display the logo
-  if (load === "Mercedes") {
-    let logoSize = 100;
-    let logoX = videoX + videoWidth / 2 - logoSize / 2;
-    let logoY = loadY + textSizeValue * 2;
-    image(mercedesLogo, logoX, logoY, logoSize, logoSize);
-  }
-
-  if (load === "Audi") {
-    let logoSize = 100;
-    let logoX = videoX + videoWidth / 2 - logoSize / 2;
-    let logoY = loadY + textSizeValue * 2;
-    image(audiLogo, logoX, logoY, logoSize, logoSize);
-  }
-
-  if (load === "Ferrari") {
-    let logoSize = 100;
-    let logoX = videoX + videoWidth / 2 - logoSize / 2;
-    let logoY = loadY + textSizeValue * 2;
-    image(ferrariLogo, logoX, logoY, logoSize, logoSize);
-  }
-
-  if (load === "Fiat") {
-    let logoSize = 100;
-    let logoX = videoX + videoWidth / 2 - logoSize / 2;
-    let logoY = loadY + textSizeValue * 2;
-    image(fiatLogo, logoX, logoY, logoSize, logoSize);
-  }
-
-  if (load === "Jeep") {
-    let logoSize = 100;
-    let logoX = videoX + videoWidth / 2 - logoSize / 2;
-    let logoY = loadY + textSizeValue * 2;
-    image(jeepLogo, logoX, logoY, logoSize, logoSize);
-  }
-
-  if (load === "Tesla") {
-    let logoSize = 100;
-    let logoX = videoX + videoWidth / 2 - logoSize / 2;
-    let logoY = loadY + textSizeValue * 2;
-    image(teslaLogo, logoX, logoY, logoSize, logoSize);
-  }
-
-  if (load === "Volkswagen") {
-    let logoSize = 100;
-    let logoX = videoX + videoWidth / 2 - logoSize / 2;
-    let logoY = loadY + textSizeValue * 2;
-    image(volkswagenLogo, logoX, logoY, logoSize, logoSize);
-  }
-
-  if (load === "Porche") {
-    let logoSize = 100;
-    let logoX = videoX + videoWidth / 2 - logoSize / 2;
-    let logoY = loadY + textSizeValue * 2;
-    image(porcheLogo, logoX, logoY, logoSize, logoSize);
-  }
-
-  if (load === "Toyota") {
-    let logoSize = 100;
-    let logoX = videoX + videoWidth / 2 - logoSize / 2;
-    let logoY = loadY + textSizeValue * 2;
-    image(toyotaLogo, logoX, logoY, logoSize, logoSize);
+    image(carLogos[load], logoX, logoY, logoSize, logoSize);
   }
 }
-
 
 function results(error, result) {
   if (error) {
