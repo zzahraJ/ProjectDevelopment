@@ -3,30 +3,42 @@ let video;
 let classifier;
 let title = "The car guesser";
 let caption = "Scan the car here and find out which brand it is.";
-let carlogoImages = {}; // Object om afbeeldingen aan labels te koppelen
-
-let carLogos = {}; // Object om labels aan logo's te koppelen
+// Object om afbeeldingen aan labels te koppelen
+let carlogoImages = {};
+// Object om labels aan logo's te koppelen
+let carLogos = {};
 
 let load = "Which car is it...";
 
-// Load the model and images
+// Laden van het model en de afbeeldingen
 function preload() {
   classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/jVcS5ZSNQ/");
-  
+
   carLogos = {
-    BMW: loadImage("img/bmwLogo.png"), // Laad het BMW-logo
-    Mercedes: loadImage("img/mercedesLogo.png"), // Laad het Mercedes-logo
-    Audi: loadImage("img/audiLogo.png"),  //laad het audi logo
-    Ferrari: loadImage("img/ferrariLogo.png"), //laad het ferrari logo
-    Fiat: loadImage("img/fiatLogo.png"), //laad het fiat logo
-    Jeep: loadImage("img/jeepLogo.png"), //laad het jeep logo
-    Tesla: loadImage("img/teslaLogo.png"), //laad het tesla logo
-    Volkswagen: loadImage("img/volkswagenLogo.png"), //laad het volkswagen logo
-    Porche: loadImage("img/porcheLogo.png"), //laad het porche logo
-    Toyota: loadImage("img/toyotaLogo.png") //laad het toyota logo
+    // Laad het BMW-logo
+    BMW: loadImage("img/bmwLogo.png"),
+    // Laad het Mercedes-logo
+    Mercedes: loadImage("img/mercedesLogo.png"),
+    //laad het audi logo
+    Audi: loadImage("img/audiLogo.png"),
+    //laad het ferrari logo
+    Ferrari: loadImage("img/ferrariLogo.png"),
+    //laad het fiat logo
+    Fiat: loadImage("img/fiatLogo.png"),
+    //laad het jeep logo
+    Jeep: loadImage("img/jeepLogo.png"),
+    //laad het tesla logo
+    Tesla: loadImage("img/teslaLogo.png"),
+    //laad het volkswagen logo
+    Volkswagen: loadImage("img/volkswagenLogo.png"),
+    //laad het porche logo
+    Porche: loadImage("img/porcheLogo.png"),
+    //laad het toyota logo
+    Toyota: loadImage("img/toyotaLogo.png")
   };
 }
 
+// Setup van de canvas
 function setup() {
   createCanvas(windowWidth, windowHeight);
   video = createCapture(VIDEO);
@@ -35,10 +47,12 @@ function setup() {
   textFont('Lobster');
 }
 
+// Classificeren van de video
 function classifyVideo() {
   classifier.classify(video, results);
 }
 
+// Tekenen van de canvas, de tekst en afbeeldingen 
 function draw() {
   background('rgba(204, 229, 255, 1)');
   let videoWidth = video.width / 2;
@@ -52,24 +66,24 @@ function draw() {
   textSize(textSizeValue);
   textAlign(CENTER, TOP);
 
-  // Display the title
+  // Het weergeven van de titel
   textSize(50);
   textFont('Lobster');
   text(title, width / 2, height / 6 - textSizeValue);
 
-  // Display the caption
+  // Het weergeven van de caption
   textSize(textSizeValue);
   textFont('Arial');
   let captionY = height / 6 + textSizeValue + 20;
   text(caption, width / 2, captionY);
 
-  // Display the load text
+  // Het weergeven van de label
   textSize(textSizeValue * 1.5);
   textFont('Arial');
   let loadY = videoY + videoHeight + textSizeValue * 2;
   text(load, width / 2, loadY);
 
-  // Check if the label exists in the carLogos object and display the corresponding logo
+  // Controleer of het label bestaat in het carLogos-object en toon het bijbehorende logo
   if (carLogos[load]) {
     let logoSize = 100;
     let logoX = videoX + videoWidth / 2 - logoSize / 2;
@@ -78,6 +92,7 @@ function draw() {
   }
 }
 
+// Het weergeven van de resultaten van de classificatie 
 function results(error, result) {
   if (error) {
     console.error(error);
@@ -87,6 +102,7 @@ function results(error, result) {
   classifyVideo();
 }
 
+// Het aanpassen van de canvas aan de grootte van het scherm
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
