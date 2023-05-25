@@ -7,12 +7,12 @@ let caption = "Scan the car here and find out which brand it is.";
 let carlogoImages = {};
 // Object om labels aan logo's te koppelen
 let carLogos = {};
-
 let load = "Which car is it...";
 
 // Laden van het model en de afbeeldingen
 function preload() {
-  classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/jVcS5ZSNQ/");
+  classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/lhX37aMcB/");// dataset met 100 afbeeldingen per label
+  //classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/jVcS5ZSNQ/"); // dataset met 50 afbeeldingen per label
 
   carLogos = {
     // Laad het BMW-logo
@@ -31,8 +31,8 @@ function preload() {
     Tesla: loadImage("img/teslaLogo.png"),
     //laad het volkswagen logo
     Volkswagen: loadImage("img/volkswagenLogo.png"),
-    //laad het porche logo
-    Porche: loadImage("img/porcheLogo.png"),
+    //laad het porsche logo
+    Porsche: loadImage("img/porscheLogo.png"),
     //laad het toyota logo
     Toyota: loadImage("img/toyotaLogo.png")
   };
